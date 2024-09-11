@@ -1,0 +1,98 @@
+.service-card {
+    max-width: 800px;
+    margin: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.service-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.service-card .service-details {
+    padding: 15px;
+}
+
+.service-card .service-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.service-card .service-header-left {
+    display: flex;
+    align-items: center;
+}
+
+.service-card .service-header-left .author-name {
+    margin-left: 10px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.service-card .service-header-right {
+    display: flex;
+    align-items: center;
+}
+
+.service-card .service-header-right .views-section {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    color: #666;
+}
+
+.service-card .title {
+    margin-bottom: 25px;
+    margin-top: 20px !important;
+}
+
+.service-card .service-header-right .new-badge {
+    font-size: 0.85rem;
+    color: #28a745;
+}
+
+.service-card .author-section img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.service-card .rating-price-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.service-card .rating-section {
+    display: flex;
+    align-items: center;
+    color: #ff9900;
+}
+
+.service-card .price-section {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.service-card .buy-button {
+    margin-left: 20px;
+    background-color: #28a745;
+    color: white;
+    width: 80px;
+    height: 35px;
+    border-radius: 7px;
+    font-size: 16px;
+}
+
+
+

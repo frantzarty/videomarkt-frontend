@@ -1,0 +1,132 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 50vh;
+    background-image: url('/img_7.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    color: white;
+    max-width: 600px;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.hero-content .highlight {
+    color: #32CD32; /* Lime green */
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: #32CD32; /* Lime green */
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #28a428; /* Darker green on hover */
+}
+
+
+/*Tag design*/
+
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f7f7;
+}
+
+.tag-slider-container {
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+    padding: 10px;
+}
+
+.tag-slider {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 5px;
+    flex-grow: 1;
+}
+
+.tag {
+    white-space: nowrap;
+    padding: 10px 15px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #fff;
+    font-size: 0.9rem;
+    color: #333;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.tag.active {
+    background-color: #d4edda; /* Light green background for active tag */
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.tag-slider::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for webkit browsers */
+}
+
+.slider-btn {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.slider-btn:hover {
+    background-color: #e2e6ea;
+}
+
+.left-btn {
+    margin-right: 10px;
+}
+
+.right-btn {
+    margin-left: 10px;
+}
+
+
+
+
+
+

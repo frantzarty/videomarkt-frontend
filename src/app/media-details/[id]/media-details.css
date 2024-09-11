@@ -1,0 +1,104 @@
+/* Main container */
+.media-details-container {
+    max-width: 1500px;
+    margin: 0 auto;
+    /*padding: 40px 40px;*/
+    /*background-color: #fff;*/
+}
+
+/* Flex container for image and info */
+.media-details-content {
+    display: flex;
+    gap: 40px;  /* Space between image and info */
+    align-items: flex-start;  /* Align image and info to the top */
+    padding-top: 40px;
+}
+
+/* Left section for the image */
+.media-image {
+    flex: 1;  /* Make image take up equal width with the info */
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.media-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+/* Right section for attributes and info */
+.media-info {
+    flex: 1;  /* Make info take up equal width with the image */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.media-info h1 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.media-info p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.media-attributes {
+    /*margin-top: 10px;*/
+    padding: 15px;
+    border-radius: 8px;
+    /*background-color: #dadfdf;*/
+}
+
+.media-attributes p {
+    font-size: 1.1rem;
+    margin: 10px 0;
+}
+
+/* Buy button */
+.buy-button {
+    background-color: #28a745;
+    color: white;
+    font-size: 1.2rem;
+    padding: 7px 12px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.buy-button:hover {
+    background-color: #218838;
+}
+
+/* Related services section */
+.related-media {
+    margin-top: 100px;
+}
+
+.related-media h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    padding-left: 20px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .media-details-content {
+        flex-direction: column;
+    }
+
+    .media-info {
+        padding-top: 20px;
+    }
+}
+
+
+
