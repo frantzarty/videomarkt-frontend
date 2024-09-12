@@ -55,7 +55,7 @@
 
 .service-card .service-header-right .new-badge {
     font-size: 0.85rem;
-    color: #28a745;
+    color: #ffb700;
 }
 
 .service-card .author-section img {
@@ -86,7 +86,7 @@
 
 .service-card .buy-button {
     margin-left: 20px;
-    background-color: #28a745;
+    background-color: #22c45e;
     color: white;
     width: 80px;
     height: 35px;

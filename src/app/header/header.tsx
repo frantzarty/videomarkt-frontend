@@ -1,6 +1,5 @@
 'use client';
 import React, { useState } from 'react';
-import './header.css';
 import Link from 'next/link';
 import { FaMapMarkerAlt, FaTimes, FaEye, FaEyeSlash } from 'react-icons/fa'; // Importing the eye icons
 import { useForm } from 'react-hook-form';
@@ -72,9 +71,9 @@ const Header: React.FC = () => {
     };
 
     return (
-        <header className="header">
+        <header className="flex justify-between items-center p-5 bg-gray-100">
             <Link href={`/`} passHref>
-                <div className="logo">
+                <div className="font-bold text-2xl">
                     <svg xmlns="http://www.w3.org/2000/svg" width="200" height="60" viewBox="0 0 200 60">
                         <text x="10" y="45" fontFamily="Arial, Helvetica, sans-serif" fontSize="40" fill="green">
                             VidMarkt
@@ -83,25 +82,26 @@ const Header: React.FC = () => {
                 </div>
             </Link>
 
-            <div className="search-bar">
+            <div className="relative w-full max-w-2xl">
                 <input
                     type="text"
                     placeholder="Search event"
                     value={query}
                     onChange={handleSearchChange}
+                    className="w-full p-3 border border-green-500 rounded-lg text-base"
                 />
                 {suggestions.length > 0 && (
-                    <div className="suggestions-dropdown">
+                    <div className="absolute w-full mt-1 bg-white shadow-lg border border-gray-300 rounded-lg max-h-60 overflow-y-auto z-10">
                         {suggestions.map(suggestion => (
                             <Link key={suggestion.id} href={`/event/${suggestion.id}`} passHref>
-                                <div className="suggestion-item">
-                                    <img src={suggestion.thumbnail} alt={suggestion.name} />
-                                    <div className="suggestion-details">
+                                <div className="flex items-center p-3 hover:bg-gray-100 cursor-pointer">
+                                    <img src={suggestion.thumbnail} alt={suggestion.name} className="w-20 h-12 rounded-lg mr-4" />
+                                    <div className="flex-1 flex justify-between items-center">
                                         <span>{suggestion.name}</span>
-                                        <span className="place">
-                      <FaMapMarkerAlt className="location-icon" /> {/* React icon */}
+                                        <span className="flex items-center text-sm text-gray-500">
+                                           <FaMapMarkerAlt className="text-red-600 mr-1" />
                                             {suggestion.place}
-                    </span>
+                                       </span>
                                     </div>
                                 </div>
                             </Link>
@@ -110,11 +110,13 @@ const Header: React.FC = () => {
                 )}
             </div>
 
-            <div className="auth-buttons">
-                <button className="sign-up" onClick={() => setSignUpModalOpened(true)}>
+            <div className="flex space-x-4">
+                <button className="bg-green-500 text-white py-2 px-4 rounded-lg" onClick={() => setSignUpModalOpened(true)}>
                     Sign up
                 </button>
-                <button className="log-in">Log in</button>
+                <button className="bg-white text-green-500 border border-green-500 py-2 px-4 rounded-lg">
+                    Log in
+                </button>
             </div>
 
             {/* Registration Modal */}
@@ -129,32 +131,32 @@ const Header: React.FC = () => {
                             <FaTimes size={20} />
                         </button>
 
-                        {/* Align Authentication text to the top-left corner */}
-                        <h2 className="text-xl font-bold mb-6 text-left">Authentication</h2>
+                        {/* Sign Up Header */}
+                        <h2 className="text-xl font-bold mb-6 text-left">Sign Up</h2>
 
-                        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                             <div className="flex space-x-4">
                                 <div className="w-1/2">
-                                    <label className="block text-sm font-medium text-gray-700">
+                                    <label className="block text-sm font-bold mb-2">
                                         First Name <span className="text-red-500">*</span>
                                     </label>
                                     <input
                                         type="text"
                                         placeholder="Your first name"
-                                        className="input w-full p-2 border border-gray-300 rounded"
+                                        className="w-full p-3 border border-gray-300 rounded-lg"
                                         {...register('firstName', { required: 'First name is required' })}
                                     />
                                     {errors.firstName && <p className="text-red-500 text-xs">{errors.firstName.message}</p>}
                                 </div>
 
                                 <div className="w-1/2">
-                                    <label className="block text-sm font-medium text-gray-700">
+                                    <label className="block text-sm font-bold mb-2">
                                         Last Name <span className="text-red-500">*</span>
                                     </label>
                                     <input
                                         type="text"
                                         placeholder="Your last name"
-                                        className="input w-full p-2 border border-gray-300 rounded"
+                                        className="w-full p-3 border border-gray-300 rounded-lg"
                                         {...register('lastName', { required: 'Last name is required' })}
                                     />
                                     {errors.lastName && <p className="text-red-500 text-xs">{errors.lastName.message}</p>}
@@ -162,13 +164,13 @@ const Header: React.FC = () => {
                             </div>
 
                             <div>
-                                <label className="block text-sm font-medium text-gray-700">
+                                <label className="block text-sm font-bold mb-2">
                                     Email <span className="text-red-500">*</span>
                                 </label>
                                 <input
                                     type="email"
                                     placeholder="Your email"
-                                    className="input w-full p-2 border border-gray-300 rounded"
+                                    className="w-full p-3 border border-gray-300 rounded-lg"
                                     {...register('email', {
                                         required: 'Email is required',
                                         pattern: {
@@ -181,15 +183,15 @@ const Header: React.FC = () => {
                             </div>
 
                             {/* Password Field */}
-                            <div className="relative">
-                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                            <div>
+                                <label className="block text-sm font-bold mb-2">
                                     Password <span className="text-red-500">*</span>
                                 </label>
                                 <div className="relative">
                                     <input
                                         type={passwordVisible ? 'text' : 'password'}
                                         placeholder="Password"
-                                        className="input w-full p-2 border border-gray-300 rounded pr-10"  // Ensure right padding for the icon
+                                        className="w-full p-3 border border-gray-300 rounded-lg pr-10"
                                         {...register('password', { required: 'Password is required', minLength: { value: 6, message: 'Password must be at least 6 characters' } })}
                                     />
                                     <button
@@ -204,15 +206,15 @@ const Header: React.FC = () => {
                             </div>
 
                             {/* Confirm Password Field */}
-                            <div className="relative">
-                                <label className="block text-sm font-medium text-gray-700 mb-1">
+                            <div>
+                                <label className="block text-sm font-bold mb-2">
                                     Confirm Password <span className="text-red-500">*</span>
                                 </label>
                                 <div className="relative">
                                     <input
                                         type={confirmPasswordVisible ? 'text' : 'password'}
                                         placeholder="Confirm password"
-                                        className="input w-full p-2 border border-gray-300 rounded pr-10"  // Ensure right padding for the icon
+                                        className="w-full p-3 border border-gray-300 rounded-lg pr-10"
                                         {...register('confirmPassword', {
                                             required: 'Please confirm your password',
                                             validate: (value) => value === password || 'Passwords do not match',
@@ -246,7 +248,7 @@ const Header: React.FC = () => {
                                 </div>
                             </div>
 
-                            <button type="submit" className="bg-green-600 text-white py-2 px-4 rounded w-full">
+                            <button type="submit" className="bg-green-600 text-white py-3 px-6 rounded-lg w-full">
                                 Register
                             </button>
                         </form>
