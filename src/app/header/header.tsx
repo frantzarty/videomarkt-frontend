@@ -3,6 +3,8 @@ import React, {useState} from 'react';
 import './header.css';
 import Link from "next/link";
 import {FaMapMarkerAlt} from 'react-icons/fa';
+import { useDisclosure } from '@mantine/hooks';
+import { Modal, Button } from '@mantine/core';
 
 
 interface Suggestion {
@@ -17,6 +19,7 @@ interface Suggestion {
 
 
 const Header: React.FC = () => {
+    const [opened, { open, close }] = useDisclosure(false);
     const [query, setQuery] = useState('');
     const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
 
@@ -85,8 +88,13 @@ const Header: React.FC = () => {
             </div>
 
 
+                <Modal opened={opened} onClose={close} title="Authentication" centered>
+                    {/* Modal content */}
+                </Modal>
+
+
             <div className="auth-buttons">
-                <button className="sign-up">Sign up</button>
+                <button className="sign-up" onClick={open}>Sign up</button>
                 <button className="log-in">Log in</button>
             </div>
         </header>

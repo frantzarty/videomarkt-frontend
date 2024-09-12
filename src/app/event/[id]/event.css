@@ -8,3 +8,11 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 0px;
 }
+
+.place {
+    display: flex;
+    align-items: center;
+    color: #6c757d;
+    font-size: 13px;
+    text-align: right;
+}

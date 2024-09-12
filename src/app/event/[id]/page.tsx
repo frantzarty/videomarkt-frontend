@@ -4,6 +4,7 @@ import Header from "@/app/header/header";
 import {useParams} from "next/navigation";
 import React, {useEffect, useState} from "react";
 import EventMedia from "@/app/event/event-media/event-media";
+import {FaMapMarkerAlt} from "react-icons/fa";
 
 
 const Event: React.FC = () => {
@@ -67,6 +68,10 @@ const Event: React.FC = () => {
                     </div>
                     {/* Price */}
                     <div className="text-right">
+                        <span className="place pr-4">
+                            <FaMapMarkerAlt className="location-icon"/> {/* React icon */}
+                            {eventData.place}
+                        </span>
                         <p className="text-xl pr-4 font-semibold text-black-600">${eventData.price}</p>
                     </div>
                 </div>
