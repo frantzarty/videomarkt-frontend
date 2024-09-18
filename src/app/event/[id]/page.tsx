@@ -88,7 +88,7 @@ const Event: React.FC = () => {
 
                 {/* Videos Section */}
                 <div className="mt-8">
-                    <EventMedia mediaList={eventData.media}/>
+                    <EventMedia mediaList={eventData.medias}/>
                 </div>
             </div>
         </div>
