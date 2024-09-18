@@ -62,7 +62,7 @@ const SignUpModal: React.FC<SignUpModalProps> = ({isOpen, onClose}) => {
                     }}
                     className="absolute top-3 right-3 text-gray-500 hover:text-red-500 focus:outline-none"
                 >
-                    <FaTimes size={20}/>
+                    <FaTimes size={18}/>
                 </button>
 
                 {/* Sign Up Header */}
