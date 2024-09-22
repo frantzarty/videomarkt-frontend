@@ -62,18 +62,18 @@ const Header: React.FC = () => {
                 {suggestions.length > 0 && (
                     <div className="absolute w-full mt-1 bg-white shadow-lg border border-gray-300 rounded-lg max-h-60 overflow-y-auto z-10">
                         {suggestions.map((suggestion: any) => (
-                            <Link key={suggestion.id} href={`/event/${suggestion.id}`} passHref>
+                            <Link key={suggestion['id']} href={`/event/${suggestion['id']}`} passHref>
                                 <div className="flex items-center p-3 hover:bg-gray-100 cursor-pointer">
                                     <img
-                                        src={suggestion.thumbnail}
-                                        alt={suggestion.name}
+                                        src={suggestion['thumbnail']}
+                                        alt={suggestion['name']}
                                         className="w-20 h-12 rounded-lg mr-4"
                                     />
                                     <div className="flex-1 flex justify-between items-center">
-                                        <span>{suggestion.name}</span>
+                                        <span>{suggestion['name']}</span>
                                         <span className="flex items-center text-sm text-gray-500">
                       <FaMapMarkerAlt className="text-red-600 mr-1" />
-                                            {suggestion.place}
+                                            {suggestion['place']}
                     </span>
                                     </div>
                                 </div>
