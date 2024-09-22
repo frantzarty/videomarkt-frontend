@@ -2,8 +2,7 @@
 import React from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { FaUserAlt, FaLock, FaTimes } from 'react-icons/fa';
-import { FcGoogle } from 'react-icons/fc'; // Google icon
-import Link from 'next/link';
+import { FcGoogle } from 'react-icons/fc';
 
 interface LoginModalProps {
     isOpen: boolean;
@@ -133,7 +132,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onOpenSignUp }
                     <div className="lg:w-1/2 bg-white-500 text-white flex items-center justify-center">
                         <div className="relative w-full h-full">
                             <img
-                                src="./img_10.png"
+                                src="/img_10.png"
                                 alt="Illustration"
                                 className="object-cover w-full h-full rounded-lg"
                             />
