@@ -1,12 +1,18 @@
-/* Main container */
+.main-container {
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+/*
+!* Main container *!
 .payment-main-container {
     max-width: 1500px;
     margin: 0 auto;
-    /*padding: 40px 40px;*/
-    /*background-color: #fff;*/
+    !*padding: 40px 40px;*!
+    !*background-color: #fff;*!
 }
 
-/* General styles */
+!* General styles *!
 body {
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
@@ -23,7 +29,7 @@ body {
     gap: 20px;
 }
 
-/* Left section for Order Summary */
+!* Left section for Order Summary *!
 .order-summary {
     flex: 1;
     padding: 20px;
@@ -72,7 +78,7 @@ h1, h3 {
     font-weight: bold;
 }
 
-/* Right section for Payment Details */
+!* Right section for Payment Details *!
 .payment-details {
     flex: 1;
     padding: 20px;
@@ -133,7 +139,7 @@ input, select {
     background-color: #8e24aa;
 }
 
-/* Media Queries for smaller screens */
+!* Media Queries for smaller screens *!
 @media (max-width: 768px) {
     .checkout-container {
         flex-direction: column;
@@ -142,3 +148,4 @@ input, select {
 
 
 
+*/

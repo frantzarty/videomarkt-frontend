@@ -3,12 +3,6 @@
     margin: 0 auto;
 }
 
-.service-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0px;
-}
-
 .place {
     display: flex;
     align-items: center;

@@ -5,10 +5,11 @@ import './media-details.css';
 import {useParams} from "next/navigation";
 import ServiceGrid from "@/app/service-grid/service-grid";
 import Header from "@/app/header/header";
-import Link from "next/link";
+import LoginModal from "@/app/header/login/login";
 
 
 const MediaDetails: React.FC = () => {
+    const [loginModalOpened, setLoginModalOpened] = useState(false); // Manage login modal state
     const {id} = useParams();
     const [media, setMedia] = useState<any>(null);
 
@@ -21,10 +22,20 @@ const MediaDetails: React.FC = () => {
         }
     }, [id]);
 
-    console.log(media);
     if (!media) {
         return <p>Loading...</p>;
     }
+
+    const handleBuyClick = () => {
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+            // User is logged in, redirect to payment
+            window.location.href = `/payment/${media.id}`;
+        } else {
+            // User is not logged in, show the login modal
+            setLoginModalOpened(true);
+        }
+    };
 
     return (
         <div className="media-details-container">
@@ -46,9 +57,9 @@ const MediaDetails: React.FC = () => {
                         <p><strong>Resolution:</strong> {media.resolution}</p>
                         <p><strong>Length:</strong> {media.length}</p>
                         <p><strong>File Size:</strong> {media.fileSize}</p>
-                        <Link href={`/payment/${media.id}`} passHref>
-                            <button className="buy-button">Buy for ${media.price}</button>
-                        </Link>
+
+                        <button className="buy-button" onClick={handleBuyClick}>Buy for ${media.price}</button>
+
                     </div>
                 </div>
             </div>
@@ -56,6 +67,17 @@ const MediaDetails: React.FC = () => {
             <div className="related-media">
                 <ServiceGrid/>
             </div>
+
+            {/* Login Modal */}
+            <LoginModal
+                isOpen={loginModalOpened}
+                onClose={() => setLoginModalOpened(false)}
+                onLoginSuccess={() => {
+                    // On successful login, close the modal and redirect to the payment page
+                    setLoginModalOpened(false);
+                    window.location.href = `/payment/${media.id}`;
+                }}
+            />
         </div>
     );
 };

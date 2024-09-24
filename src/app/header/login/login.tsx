@@ -1,13 +1,17 @@
+// login.tsx
+
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { FaUserAlt, FaLock, FaTimes } from 'react-icons/fa';
+import { FaUserAlt, FaLock, FaTimes, FaEye, FaEyeSlash } from 'react-icons/fa'; // Import FaEye and FaEyeSlash for toggling password visibility
 import { FcGoogle } from 'react-icons/fc';
+import axios from 'axios';  // Import Axios
 
 interface LoginModalProps {
     isOpen: boolean;
     onClose: () => void;
-    onOpenSignUp: () => void; // Function to open the SignUp modal
+    onOpenSignUp: () => void;
+    onLoginSuccess: () => void; // New prop to handle login success
 }
 
 interface IFormInput {
@@ -15,15 +19,35 @@ interface IFormInput {
     password: string;
 }
 
-const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onOpenSignUp }) => {
+const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onOpenSignUp, onLoginSuccess }) => {
+    const [showPassword, setShowPassword] = useState(false); // State to manage password visibility
     const {
         register,
         handleSubmit,
         formState: { errors },
     } = useForm<IFormInput>();
 
-    const onSubmit: SubmitHandler<IFormInput> = (data) => {
-        console.log(data);
+    const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+        try {
+            // Call the login API
+            const response = await axios.post('http://localhost:3001/auth/login', {
+                username: data.username,
+                password: data.password,
+                grantType: 'password',
+            });
+
+            // Save user info to localStorage
+            localStorage.setItem('user', JSON.stringify(response.data.user));
+
+            // Trigger the login success handler from Header
+            onLoginSuccess();
+
+            // Hide the modal after successful login
+            onClose();
+        } catch (error) {
+            // Handle error
+            console.error('Error logging in', error);
+        }
     };
 
     // If the modal is not open, do not render anything
@@ -77,13 +101,21 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onOpenSignUp }
                             <div className="relative flex items-center">
                                 <FaLock className="absolute left-3 text-gray-400" />
                                 <input
-                                    type="password"
+                                    type={showPassword ? 'text' : 'password'} // Toggle between text and password
                                     placeholder="Password"
                                     {...register('password', { required: 'Password is required' })}
                                     className={`pl-10 pr-4 py-2 w-full border rounded-lg ${
                                         errors.password ? 'border-red-500' : 'border-gray-300'
                                     } focus:outline-none focus:ring-2 focus:ring-indigo-500`}
                                 />
+                                {/* Eye Icon for Toggling Password Visibility */}
+                                <button
+                                    type="button"
+                                    onClick={() => setShowPassword(!showPassword)} // Toggle password visibility
+                                    className="absolute right-3 text-gray-400 focus:outline-none"
+                                >
+                                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                                </button>
                             </div>
                             {errors.password && (
                                 <span className="text-red-500 text-sm mt-1">{errors.password.message}</span>
