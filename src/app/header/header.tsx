@@ -38,7 +38,7 @@ const Header: React.FC = () => {
 
     const fetchSuggestions = async (searchQuery: string) => {
         try {
-            const res = await axios.get('http://localhost:3001/event', {
+            const res = await axios.get('http://localhost:3001/season', {
                 params: {
                     search: searchQuery,
                 },
@@ -92,7 +92,7 @@ const Header: React.FC = () => {
                 {suggestions.length > 0 && (
                     <div className="absolute w-full mt-1 bg-white shadow-lg border border-gray-300 rounded-lg max-h-60 overflow-y-auto z-10">
                         {suggestions.map((suggestion: any) => (
-                            <Link key={suggestion['id']} href={`/event/${suggestion['id']}`} passHref>
+                            <Link key={suggestion['id']} href={`/season/${suggestion['id']}`} passHref>
                                 <div className="flex items-center p-3 hover:bg-gray-100 cursor-pointer">
                                     <img
                                         src={suggestion['thumbnail']}

@@ -5,14 +5,15 @@ import {useParams} from "next/navigation";
 import React, {useEffect, useState} from "react";
 import EventMedia from "@/app/event/event-media/event-media";
 import {FaMapMarkerAlt} from "react-icons/fa";
+import SeasonEvent from "@/app/season/season-event/season-event";
 
-const Event: React.FC = () => {
+const Season: React.FC = () => {
     const {id} = useParams();
-    const [eventData, setEventData] = useState<any>(null);
+    const [seasonData, setEventData] = useState<any>(null);
 
     useEffect(() => {
         if (id) {
-            fetch(`http://localhost:3001/event/${id}`)
+            fetch(`http://localhost:3001/season/${id}`)
                 .then((res) => res.json())
                 .then((data) => setEventData(data))
                 .catch((err) => console.error(err));
@@ -23,10 +24,10 @@ const Event: React.FC = () => {
     const formatDate = (dateString: string): string => {
         const options: Intl.DateTimeFormatOptions = {day: '2-digit', month: 'short', year: 'numeric'};
         const date = new Date(dateString);
-        return date.toLocaleDateString('en-GB', options); // Converts 'Sep' to 'Sept' .replace('Sep', 'Sept')
+        return date.toLocaleDateString('en-GB', options);
     };
 
-    if (!eventData) {
+    if (!seasonData) {
         return <p>Loading...</p>;
     }
 
@@ -36,48 +37,40 @@ const Event: React.FC = () => {
             {/* Banner */}
             <div className="relative">
                 <img
-                    src={eventData.banner}
+                    src={seasonData.banner}
                     alt="Event Banner"
                     className="w-full h-60 object-cover"
                 />
-                {/* Profile Thumbnail Centered */}
-                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 -mb-10">
+                {/* Profile Thumbnail */}
+                <div className="absolute bottom-0 left-8 -mb-10">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
-                        src={eventData.thumbnail}
+                        src={seasonData.thumbnail}
                         alt="Profile Thumbnail"
                         className="rounded-full border-4 border-white w-40 h-40"
                     />
                 </div>
             </div>
 
-            {/* Season Name on the Left, Place on the Right */}
-            <div className="flex items-center justify-between px-4 py-4">
-                {/* Season Name Aligned to Left */}
-                <div className="flex-1">
-                    <span className="text-4xl text-gray-500 font-bold">{eventData.season.name}</span>
-                </div>
-
-                {/* Place and Location Icon */}
-                <div className="flex items-center justify-end">
-                    <FaMapMarkerAlt className="location-icon mr-2"/>
-                    <span className="text-md font-normal">{eventData.place}</span>
-                </div>
+            {/* Place below banner */}
+            <div className="flex items-center justify-end px-4 py-4">
+                <FaMapMarkerAlt className="location-icon mr-2"/> {/* Location icon */}
+                <span className="text-md font-normal">{seasonData.place}</span>
             </div>
 
-            <div className="px-4 py-16">
+            <div className="px-4 py-8">
                 {/* Event Details */}
                 <div className="flex justify-between items-center mb-8">
                     <div>
-                        <h1 className="text-2xl font-bold">{eventData.name}</h1>
-                        <p className="text-gray-500">{formatDate(eventData.createdAt)}</p> {/* Formatted Date */}
-                        <p className="text-sm mt-2">{eventData.description}</p>
+                        <h1 className="text-3xl font-bold">{seasonData.name}</h1>
+                        <p className="text-gray-500">{formatDate(seasonData.createdAt)}</p> {/* Formatted Date */}
+                        <p className="text-sm mt-2">{seasonData.description}</p>
                     </div>
-                    {/* Price */}
+                    {/* Price Button */}
                     <div className="text-right">
                         <button
                             className="text-xl font-semibold text-black-600 bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded transition duration-300">
-                            $ {eventData.price}
+                            $ {seasonData.price}
                         </button>
                     </div>
                 </div>
@@ -86,17 +79,17 @@ const Event: React.FC = () => {
                 <div className="flex space-x-4 border-b-2 border-gray-300 pb-2">
                     <button
                         className="text-gray-600 font-semibold hover:text-black border-b-2 border-transparent hover:border-black transition duration-300">
-                        Videos
+                        Events
                     </button>
                 </div>
 
                 {/* Videos Section */}
                 <div className="mt-8">
-                    <EventMedia mediaList={eventData.medias}/>
+                    <SeasonEvent eventList={seasonData.events}/>
                 </div>
             </div>
         </div>
     );
 };
 
-export default Event;
+export default Season;

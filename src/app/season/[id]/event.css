@@ -1,0 +1,12 @@
+.main-container {
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.place {
+    display: flex;
+    align-items: center;
+    color: #6c757d;
+    font-size: 13px;
+    text-align: right;
+}

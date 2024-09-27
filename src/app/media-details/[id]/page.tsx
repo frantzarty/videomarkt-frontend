@@ -72,12 +72,13 @@ const MediaDetails: React.FC = () => {
             <LoginModal
                 isOpen={loginModalOpened}
                 onClose={() => setLoginModalOpened(false)}
+                // onOpenSignUp={}
                 onLoginSuccess={() => {
                     // On successful login, close the modal and redirect to the payment page
                     setLoginModalOpened(false);
                     window.location.href = `/payment/${media.id}`;
                 }}
-            />
+             />
         </div>
     );
 };
